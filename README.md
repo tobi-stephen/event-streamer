@@ -1,4 +1,4 @@
-## Flask Restful App for event driven scenario
+## Flask Restful App for Event Driven Development Scenario
 
 ### The project is a showcase of skills I recently learned regarding modern development workflows(as at 2024)
 
