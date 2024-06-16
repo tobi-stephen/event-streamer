@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: idea-events
+  name: idea-events
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: idea-events
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: idea-events
+    spec:
+      containers:
+      - image: event_consumer_app
+        name: event-consumer-app
+        imagePullPolicy: Never
+        resources: {}
+        env:
+          - name: SEARCH_PROVIDER
+            value: elastic
+          - name: ELASTIC_HOSTS
+            value: <elastic server>
+          - name: ELASTIC_USER_PASS
+            value: elastic_pass
+          - name: ELASTIC_USER_NAME
+            value: elastic
+      - image: event_producer_app
+        name: event-producer-app
+        imagePullPolicy: Never
+        resources: {}
+        ports:
+          - containerPort: 5000
+            hostPort: 5000
+        env:
+          - name: SEARCH_PROVIDER
+            value: elastic
+          - name: ELASTIC_HOSTS
+            value: <elastic server>
+          - name: ELASTIC_USER_PASS
+            value: elastic_pass
+          - name: ELASTIC_USER_NAME
+            value: elastic
+            
+status: {}
