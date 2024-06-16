@@ -3,7 +3,7 @@
 ### The project is a showcase of skills I recently learned regarding modern development workflows(as at 2024)
 
 For all the components used, I began by setting up each of them locally successfully before trying out the managed cloud solutions
-
+  
 The project uses the following primarily
 - flask https://flask.palletsprojects.com/en/3.0.x/
 - confluent kafka https://developer.confluent.io/get-started/python/#introduction
@@ -12,6 +12,15 @@ The project uses the following primarily
 - mongodb https://www.mongodb.com/
 - docker https://www.docker.com/
 - kubernetes https://kubernetes.io/docs/home/
+
+To run locally, 
+- first get api keys from `confluent kafka`, `elastic search`, `mongodb`.
+- update the config properties and environment variables, try the below steps and the missing fields might become more obvious
+- `python3 -m venv .venv`
+- `source .venv/bin/activate`
+- `pip install -r requirements.txt`
+- `flask run --debug`
+- in another terminal, run the consumer app `python consumer_app.py`
 
 The application is separated into 
 - producer app: a Rest endpoint saves random idea object into mongodb and produce to a kafka topic
